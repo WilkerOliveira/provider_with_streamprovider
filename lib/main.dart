@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return  Provider(
       create: (context) => new MyModel(), //DI
       child: MaterialApp(
-          title: 'Provider with NotifyListeners',
+          title: 'Provider with StreamProvider',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
@@ -44,7 +44,24 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              'Date Without Consumer :' + DateTime.now().toString(),
+              'Date Without StreamProvider :' + DateTime.now().toString(),
+            ),
+            StreamProvider<int>.value(
+              initialData: 0,
+              value: model.secondCountStream,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'Second Current Date :' + DateTime.now().toString(),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      model.updateSecond();
+                    },
+                    child: Text("Increment Second: " + Provider.of<int>(context).toString()),
+                  ),
+                ],
+              ),
             ),
             StreamProvider<int>.value(
               initialData: 0,
