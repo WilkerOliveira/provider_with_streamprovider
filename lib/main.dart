@@ -49,23 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
             StreamProvider<int>.value(
               initialData: 0,
               value: model.secondCountStream,
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'Second Current Date :' + DateTime.now().toString(),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      model.updateSecond();
-                    },
-                    child: Text("Increment Second: " + Provider.of<int>(context).toString()),
-                  ),
-                ],
-              ),
-            ),
-            StreamProvider<int>.value(
-              initialData: 0,
-              value: model.secondCountStream,
               child: SecondWidget(),
             ),
             StreamProvider<int>.value(
